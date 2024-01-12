@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fmnine/core/constants/constants.dart';
-import 'package:fmnine/presentation/news/widgets/video_action_widget.dart';
+import 'package:fmnine/view/news/widgets/video_action_widget.dart';
 
 class VideoPlayWidget extends StatelessWidget {
   final int index;

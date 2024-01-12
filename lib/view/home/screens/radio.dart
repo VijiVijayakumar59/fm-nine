@@ -131,18 +131,18 @@ class _RadioScreenState extends State<RadioScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    FloatingActionButton(
+                    IconButton(
                       onPressed: () {},
-                      child: const Icon(
+                      icon: const Icon(
                         Icons.skip_previous_outlined,
                       ),
                     ),
                     const KWidth(
                       size: 0.1,
                     ),
-                    FloatingActionButton(
+                    IconButton(
                       onPressed: () {},
-                      child: const Icon(
+                      icon: const Icon(
                         Icons.play_arrow_rounded,
                         size: 40,
                       ),
@@ -150,9 +150,9 @@ class _RadioScreenState extends State<RadioScreen> {
                     const KWidth(
                       size: 0.1,
                     ),
-                    FloatingActionButton(
+                    IconButton(
                       onPressed: () {},
-                      child: const Icon(
+                      icon: const Icon(
                         Icons.skip_next_outlined,
                       ),
                     ),

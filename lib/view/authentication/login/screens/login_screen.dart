@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fmnine/core/colors/colors.dart';
 import 'package:fmnine/core/constants/constants.dart';
-import 'package:fmnine/presentation/authentication/sign_up/screens/sign_up_screen.dart';
-import 'package:fmnine/presentation/authentication/sign_up/widgets/elevated_button.dart';
-import 'package:fmnine/presentation/authentication/sign_up/widgets/textform_widget.dart';
-import 'package:fmnine/presentation/home/screens/home_screen.dart';
+import 'package:fmnine/view/authentication/sign_up/screens/sign_up_screen.dart';
+import 'package:fmnine/view/authentication/sign_up/widgets/elevated_button.dart';
+import 'package:fmnine/view/authentication/sign_up/widgets/textform_widget.dart';
+import 'package:fmnine/view/home/screens/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -53,11 +53,11 @@ class _SignUpScreenState extends State<LoginScreen> {
                 const KHeight(
                   size: 0.02,
                 ),
-                EmailPhoneTextWidget(
-                  textControllers: emailPhoneController,
-                  hintText: "Email/Phone",
-                  prefixIcon: Icons.mail_outline,
-                ),
+                // EmailPhoneTextWidget(
+                //   textControllers: emailPhoneController,
+                //   hintText: "Email/Phone",
+                //   prefixIcon: Icons.mail_outline,
+                // ),
                 const KHeight(
                   size: 0.02,
                 ),
@@ -133,7 +133,7 @@ class _SignUpScreenState extends State<LoginScreen> {
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => const SignUpScreen(),
+                            builder: (context) => SignUpEmail(),
                           ),
                         );
                       },

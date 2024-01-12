@@ -1,23 +1,15 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:fmnine/core/colors/colors.dart';
 import 'package:fmnine/core/constants/constants.dart';
-import 'package:fmnine/presentation/authentication/login/screens/login_screen.dart';
-import 'package:fmnine/presentation/authentication/sign_up/widgets/elevated_button.dart';
-import 'package:fmnine/presentation/authentication/sign_up/widgets/textform_widget.dart';
-import 'package:fmnine/presentation/home/screens/home_screen.dart';
+import 'package:fmnine/view/authentication/login/screens/login_screen.dart';
+import 'package:fmnine/view/authentication/sign_up/widgets/elevated_button.dart';
+import 'package:fmnine/view/authentication/sign_up/widgets/textform_widget.dart';
+import 'package:fmnine/view/home/screens/home_screen.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
-
-  @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
-}
-
-class _SignUpScreenState extends State<SignUpScreen> {
-  List<TextEditingController> emailPhoneController = [
-    TextEditingController(),
-    TextEditingController(),
-  ];
+class PhoneAuthScreen extends StatelessWidget {
+  PhoneAuthScreen({super.key});
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmpasswordController = TextEditingController();
@@ -57,11 +49,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const KHeight(
                   size: 0.02,
                 ),
-                EmailPhoneTextWidget(
-                  textControllers: emailPhoneController,
-                  hintText: "Email/Phone",
-                  prefixIcon: Icons.mail_outline,
-                ),
+                // EmailPhoneTextWidget(
+                //   textControllers: emailPhoneController,
+                //   hintText: "Email/Phone",
+                //   prefixIcon: Icons.mail_outline,
+                // ),
                 const KHeight(
                   size: 0.02,
                 ),

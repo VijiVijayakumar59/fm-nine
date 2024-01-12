@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fmnine/presentation/news/widgets/video_play_widget.dart';
+import 'package:fmnine/view/news/widgets/video_play_widget.dart';
 
 class ShortNews extends StatelessWidget {
   const ShortNews({super.key});

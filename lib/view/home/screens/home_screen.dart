@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fmnine/core/colors/colors.dart';
-import 'package:fmnine/presentation/home/screens/radio.dart';
-import 'package:fmnine/presentation/home/widgets/drawer_elevated_button.dart';
-import 'package:fmnine/presentation/news/screens/news_screen.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:fmnine/view/home/screens/radio.dart';
+import 'package:fmnine/view/home/widgets/drawer_elevated_button.dart';
+import 'package:fmnine/view/news/screens/news_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -41,9 +40,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         drawer: Drawer(
           child: ListView(
-            children: [
+            children: const [
               DrawerHeader(
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
                       Color.fromARGB(255, 238, 110, 95),
@@ -58,13 +57,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Text(
                       "FM 9",
-                      style: GoogleFonts.aladin(
-                        textStyle: const TextStyle(
-                          fontSize: 28,
-                        ),
+                      style: TextStyle(
+                        fontSize: 28,
                       ),
                     ),
-                    const CircleAvatar(
+                    CircleAvatar(
                       backgroundColor: Colors.white,
                       radius: 28,
                       child: Icon(
@@ -73,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.grey,
                       ),
                     ),
-                    const Text(
+                    Text(
                       "Username",
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
@@ -81,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              const DrawerElevatedButton(
+              DrawerElevatedButton(
                 text: "Settings",
               ),
               // const SizedBox(

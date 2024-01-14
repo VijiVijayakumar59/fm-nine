@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fmnine/core/colors/colors.dart';
-import 'package:fmnine/view/authentication/login/screens/login_screen.dart';
+import 'package:fmnine/view/authentication/login_with.dart';
 import 'package:fmnine/view/onboarding/widgets/onboard_core.dart';
 import 'package:fmnine/view/onboarding/widgets/onboarding_content.dart';
 import 'package:fmnine/view/onboarding/widgets/page_indicating_widget.dart';
@@ -66,13 +66,14 @@ class _OnboardScreenState extends State<OnboardScreen> {
                     children: [
                       ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color.fromARGB(255, 255, 17, 0),
+                            backgroundColor:
+                                const Color.fromARGB(255, 255, 17, 0),
                           ),
                           onPressed: () {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const LoginScreen(),
+                                  builder: (context) => const LoginOrSignup(),
                                 ));
                           },
                           child: Text('Skip',
@@ -92,7 +93,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                           ? Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const LoginScreen(),
+                                builder: (context) => const LoginOrSignup(),
                               ))
                           : _pageController.nextPage(
                               duration: const Duration(milliseconds: 300),

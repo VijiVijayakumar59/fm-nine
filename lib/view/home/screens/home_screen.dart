@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 254, 203, 200),
+          backgroundColor: Color.fromARGB(255, 249, 195, 195),
           title: SizedBox(
             height: MediaQuery.of(context).size.height * 0.078,
             child: Image.asset(
@@ -45,9 +45,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      Color.fromARGB(255, 238, 110, 95),
-                      Color.fromARGB(255, 224, 154, 154),
-                      Color.fromARGB(255, 205, 56, 56),
+                      Color.fromARGB(255, 252, 30, 5),
+                      Color.fromARGB(255, 251, 162, 162),
+                      Color.fromARGB(255, 248, 17, 17),
                     ],
                     begin: Alignment.bottomLeft,
                     end: Alignment.topRight,
@@ -59,6 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       "FM 9",
                       style: TextStyle(
                         fontSize: 28,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     CircleAvatar(
@@ -81,71 +82,42 @@ class _HomeScreenState extends State<HomeScreen> {
               DrawerElevatedButton(
                 text: "Settings",
               ),
-              // const SizedBox(
-              //   height: 10,
-              // ),
-              // const DrawerElevatedButton(
-              //   text: "Our Servies",
-              // ),
-              // const SizedBox(
-              //   height: 10,
-              // ),
-              // const DrawerElevatedButton(
-              //   text: "Reviews",
-              // ),
-              // const SizedBox(
-              //   height: 10,
-              // ),
-              // const DrawerElevatedButton(
-              //   text: "Settings",
-              // ),
             ],
           ),
         ),
         body: widgetOptions.elementAt(selectedIndex),
-        bottomNavigationBar: Stack(
-          children: [
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                height: 56, // Adjust the height as needed
-                color: const Color.fromARGB(
-                    255, 254, 203, 200), // Background color for the active item
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.radio,
+                size: 28,
               ),
+              label: 'Radio',
             ),
-            BottomNavigationBar(
-              items: const <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.radio,
-                    size: 28,
-                  ),
-                  label: 'Radio',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.play_circle_outline,
-                    size: 28,
-                  ),
-                  label: 'News',
-                ),
-              ],
-              type: BottomNavigationBarType.fixed,
-              // backgroundColor: Color.fromARGB(255, 244, 188, 184),
-              currentIndex: selectedIndex,
-              selectedItemColor: Colors.red,
-              unselectedItemColor: greyColor,
-              unselectedLabelStyle: const TextStyle(
-                color: greyColor,
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.play_circle_outline,
+                size: 28,
               ),
-              iconSize: 40,
-              elevation: 5,
-              onTap: onItemTapped,
+              label: 'News',
             ),
           ],
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: Color.fromARGB(255, 233, 19, 4),
+          currentIndex: selectedIndex,
+          selectedItemColor: Colors.white,
+          unselectedItemColor: blackColor,
+          unselectedLabelStyle: const TextStyle(
+            color: greyColor,
+          ),
+          iconSize: 38,
+          elevation: 5,
+          onTap: onItemTapped,
+          selectedFontSize: 16,
+          unselectedFontSize: 13,
         ),
+      
       ),
     );
   }

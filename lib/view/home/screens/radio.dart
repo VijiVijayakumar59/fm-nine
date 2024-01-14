@@ -19,7 +19,7 @@ class _RadioScreenState extends State<RadioScreen> {
         body: DecoratedBox(
           decoration: const BoxDecoration(
             gradient: RadialGradient(colors: [
-              Color.fromARGB(255, 245, 221, 221),
+              Color.fromARGB(255, 246, 229, 229),
               Color.fromARGB(255, 247, 244, 244),
             ], radius: 1),
           ),
@@ -131,18 +131,18 @@ class _RadioScreenState extends State<RadioScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    IconButton(
+                    FloatingActionButton(
                       onPressed: () {},
-                      icon: const Icon(
+                      child: const Icon(
                         Icons.skip_previous_outlined,
                       ),
                     ),
                     const KWidth(
                       size: 0.1,
                     ),
-                    IconButton(
+                    FloatingActionButton(
                       onPressed: () {},
-                      icon: const Icon(
+                      child: const Icon(
                         Icons.play_arrow_rounded,
                         size: 40,
                       ),
@@ -150,9 +150,9 @@ class _RadioScreenState extends State<RadioScreen> {
                     const KWidth(
                       size: 0.1,
                     ),
-                    IconButton(
+                    FloatingActionButton(
                       onPressed: () {},
-                      icon: const Icon(
+                      child: const Icon(
                         Icons.skip_next_outlined,
                       ),
                     ),

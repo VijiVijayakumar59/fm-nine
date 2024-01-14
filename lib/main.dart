@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fmnine/view/authentication/login_with.dart';
 import 'package:fmnine/view/splash/splash_screen.dart';
-// import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +21,7 @@ class MyApp extends StatelessWidget {
             seedColor: const Color.fromARGB(255, 235, 117, 109)),
         useMaterial3: true,
       ),
-      home: const LoginOrSignup(),
+      home: const SplashScreen(),
     );
   }
 }

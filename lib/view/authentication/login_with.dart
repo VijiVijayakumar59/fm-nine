@@ -1,8 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fmnine/core/colors/colors.dart';
 import 'package:fmnine/core/constants/constants.dart';
-import 'package:fmnine/view/authentication/sign_up/screens/phone.dart';
+import 'package:fmnine/view/authentication/sign_up/email/sign_up_screen.dart';
+import 'package:fmnine/view/authentication/sign_up/phone/phone.dart';
 
 class LoginOrSignup extends StatelessWidget {
   const LoginOrSignup({super.key});
@@ -67,7 +67,13 @@ class LoginOrSignup extends StatelessWidget {
                 children: [
                   FloatingActionButton(
                     backgroundColor: whiteColor,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => SignUpEmail(),
+                        ),
+                      );
+                    },
                     child: const Icon(
                       Icons.mail,
                     ),

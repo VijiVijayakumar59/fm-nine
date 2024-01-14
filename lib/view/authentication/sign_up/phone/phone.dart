@@ -4,23 +4,29 @@ import 'package:flutter/material.dart';
 import 'package:fmnine/core/colors/colors.dart';
 import 'package:fmnine/core/constants/constants.dart';
 import 'package:fmnine/view/authentication/login/screens/login_screen.dart';
+import 'package:fmnine/view/authentication/sign_up/phone/otp_screen.dart';
 import 'package:fmnine/view/authentication/sign_up/widgets/elevated_button.dart';
 import 'package:fmnine/view/authentication/sign_up/widgets/textform_widget.dart';
-import 'package:fmnine/view/home/screens/home_screen.dart';
 
-class SignUpEmail extends StatelessWidget {
-  SignUpEmail({super.key});
-
+class PhoneAuthScreen extends StatelessWidget {
+  PhoneAuthScreen({super.key});
   TextEditingController nameController = TextEditingController();
-
-  TextEditingController passwordController = TextEditingController();
-
-  TextEditingController confirmpasswordController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios_new,
+            ),
+          ),
+        ),
         body: Padding(
           padding:
               const EdgeInsets.only(top: 2, left: 20, right: 20, bottom: 8),
@@ -38,8 +44,11 @@ class SignUpEmail extends StatelessWidget {
                   ),
                 ),
                 const Text(
-                  "Sign Up",
-                  style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+                  "Enter the details",
+                  style: TextStyle(
+                    fontSize: 26,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 const KHeight(
                   size: 0.02,
@@ -52,23 +61,10 @@ class SignUpEmail extends StatelessWidget {
                 const KHeight(
                   size: 0.02,
                 ),
-                const KHeight(
-                  size: 0.02,
-                ),
                 TextFormWidget(
-                  textController: passwordController,
-                  hintText: "Password",
-                  prefixIcon: Icons.lock_outline,
-                  suffixIcon: Icons.visibility_off_outlined,
-                ),
-                const KHeight(
-                  size: 0.02,
-                ),
-                TextFormWidget(
-                  textController: confirmpasswordController,
-                  hintText: "Confirm Password",
-                  prefixIcon: Icons.lock_outline,
-                  suffixIcon: Icons.visibility_off_outlined,
+                  hintText: "Phone number",
+                  textController: phoneController,
+                  prefixIcon: Icons.phone,
                 ),
                 const KHeight(
                   size: 0.02,
@@ -77,12 +73,12 @@ class SignUpEmail extends StatelessWidget {
                   size: 0.02,
                 ),
                 ElevatedButtonWidget(
-                  text: "Sign Up",
+                  text: "Send OTP",
                   bgColor: const Color.fromARGB(255, 255, 26, 10),
                   onPress: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => const HomeScreen(),
+                        builder: (context) => OtpVerification(),
                       ),
                     );
                   },
@@ -96,21 +92,31 @@ class SignUpEmail extends StatelessWidget {
                       // color: twhitecolor,
                       ),
                 ),
-                Container(
-                  height: 40,
-                  width: 40,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(
-                      color: whiteColor,
-                    ),
-                    image: const DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage(
-                        'assets/images/google.jpg',
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    FloatingActionButton(
+                      backgroundColor: whiteColor,
+                      onPressed: () {},
+                      child: Image.asset(
+                        "assets/images/google.jpg",
+                        fit: BoxFit.contain,
+                        height: 40,
+                        width: 40,
                       ),
                     ),
-                  ),
+                    const KWidth(size: 0.04),
+                    FloatingActionButton(
+                      backgroundColor: whiteColor,
+                      onPressed: () {},
+                      child: Image.asset(
+                        "assets/images/facebook logo.png",
+                        fit: BoxFit.contain,
+                        height: 62,
+                        width: 62,
+                      ),
+                    ),
+                  ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

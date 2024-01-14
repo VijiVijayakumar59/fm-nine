@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fmnine/core/colors/colors.dart';
 import 'package:fmnine/core/constants/constants.dart';
-import 'package:fmnine/view/authentication/sign_up/screens/sign_up_screen.dart';
+import 'package:fmnine/view/authentication/forgot_password/forgot_password.dart';
+import 'package:fmnine/view/authentication/sign_up/email/sign_up_screen.dart';
 import 'package:fmnine/view/authentication/sign_up/widgets/elevated_button.dart';
 import 'package:fmnine/view/authentication/sign_up/widgets/textform_widget.dart';
 import 'package:fmnine/view/home/screens/home_screen.dart';
@@ -14,16 +15,22 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<LoginScreen> {
-  List<TextEditingController> emailPhoneController = [
-    TextEditingController(),
-    TextEditingController(),
-  ];
+  TextEditingController nameController = TextEditingController();
+
   TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(Icons.arrow_back_ios_new),
+          ),
+        ),
         body: Padding(
           padding:
               const EdgeInsets.only(top: 8, left: 20, right: 20, bottom: 8),
@@ -53,17 +60,17 @@ class _SignUpScreenState extends State<LoginScreen> {
                 const KHeight(
                   size: 0.02,
                 ),
-                // EmailPhoneTextWidget(
-                //   textControllers: emailPhoneController,
-                //   hintText: "Email/Phone",
-                //   prefixIcon: Icons.mail_outline,
-                // ),
+                TextFormWidget(
+                  textController: nameController,
+                  hintText: "Username",
+                  prefixIcon: Icons.person_2_outlined,
+                ),
                 const KHeight(
                   size: 0.02,
                 ),
                 TextFormWidget(
                   textController: passwordController,
-                  hintText: "Password",
+                  hintText: "Enter your password",
                   prefixIcon: Icons.lock_outline,
                   suffixIcon: Icons.visibility_off_outlined,
                 ),
@@ -72,14 +79,14 @@ class _SignUpScreenState extends State<LoginScreen> {
                   children: [
                     TextButton(
                       child: const Text(
-                        "Forget Password",
+                        "Forgot Password",
                       ),
                       onPressed: () {
-                        // Navigator.of(context).push(
-                        //   MaterialPageRoute(
-                        //     builder: (context) => ResetPassword(),
-                        //   ),
-                        // );
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => ResetPassword(),
+                          ),
+                        );
                       },
                     ),
                   ],

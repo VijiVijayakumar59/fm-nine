@@ -20,47 +20,32 @@ class OnboardContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          child: Container(
-            height: 350,
-            width: 400,
-            decoration: BoxDecoration(
-              // color: Colors.white38,
-              // gradient: RadialGradient(colors: [
-              //   Color.fromRGBO(255, 255, 255, 1),
-              //   Color.fromARGB(255, 255, 8, 8),
-              // ], radius: 1),
-              border: Border.all(
-                width: 2.0,
-                color: whiteColor,
-              ),
-              borderRadius: const BorderRadius.all(
-                Radius.circular(
-                  600,
-                ),
-              ),
+          height: 350,
+          width: 400,
+          decoration: BoxDecoration(
+            // color: Colors.white38,
+            // gradient: RadialGradient(colors: [
+            //   Color.fromRGBO(255, 255, 255, 1),
+            //   Color.fromARGB(255, 255, 8, 8),
+            // ], radius: 1),
+            border: Border.all(
+              width: 2.0,
+              color: whiteColor,
             ),
-            child: const Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Image(
-                image: AssetImage(
-                  "assets/images/FM 9  Logo.png",
-                ),
+            borderRadius: const BorderRadius.all(
+              Radius.circular(
+                600,
               ),
             ),
           ),
-          // width: width / 1,
-          // height: height / 2,
-          // decoration: BoxDecoration(
-          //   gradient: RadialGradient(colors: [
-          //     Color.fromARGB(255, 247, 244, 244),
-          //     Color.fromARGB(255, 245, 221, 221),
-          //   ], radius: 1),
-          //   borderRadius: BorderRadius.circular(30),
-          //   // image: DecorationImage(
-          //   //   image: AssetImage(image),
-          //   //   fit: BoxFit.cover,
-          //   // )
-          // ),
+          child: const Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Image(
+              image: AssetImage(
+                "assets/images/FM 9  Logo.png",
+              ),
+            ),
+          ),
         ),
         const SizedBox(
           height: 20,

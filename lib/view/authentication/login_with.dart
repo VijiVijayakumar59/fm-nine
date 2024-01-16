@@ -1,8 +1,12 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:fmnine/core/colors/colors.dart';
 import 'package:fmnine/core/constants/constants.dart';
+import 'package:fmnine/models/services/auth_services/google_sign_in.dart';
 import 'package:fmnine/view/authentication/sign_up/email/sign_up_screen.dart';
 import 'package:fmnine/view/authentication/sign_up/phone/phone.dart';
+import 'package:fmnine/view/home/screens/home_screen.dart';
 
 class LoginOrSignup extends StatelessWidget {
   const LoginOrSignup({super.key});
@@ -40,17 +44,24 @@ class LoginOrSignup extends StatelessWidget {
             children: [
               Column(
                 children: [
-                  FloatingActionButton(
-                    backgroundColor: whiteColor,
-                    onPressed: () {
+                  GestureDetector(
+                    onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) => PhoneAuthScreen(),
                         ),
                       );
                     },
-                    child: const Icon(
-                      Icons.phone,
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.06,
+                      width: MediaQuery.of(context).size.width * 0.12,
+                      decoration: BoxDecoration(
+                        color: whiteColor,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: const Icon(
+                        Icons.phone,
+                      ),
                     ),
                   ),
                   const KHeight(size: 0.01),
@@ -65,17 +76,24 @@ class LoginOrSignup extends StatelessWidget {
               const KWidth(size: 0.08),
               Column(
                 children: [
-                  FloatingActionButton(
-                    backgroundColor: whiteColor,
-                    onPressed: () {
+                  GestureDetector(
+                    onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) => SignUpEmail(),
                         ),
                       );
                     },
-                    child: const Icon(
-                      Icons.mail,
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.06,
+                      width: MediaQuery.of(context).size.width * 0.12,
+                      decoration: BoxDecoration(
+                        color: whiteColor,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: const Icon(
+                        Icons.mail,
+                      ),
                     ),
                   ),
                   const KHeight(size: 0.01),
@@ -90,14 +108,27 @@ class LoginOrSignup extends StatelessWidget {
               const KWidth(size: 0.08),
               Column(
                 children: [
-                  FloatingActionButton(
-                    backgroundColor: whiteColor,
-                    onPressed: () {},
-                    child: Image.asset(
-                      "assets/images/google.jpg",
-                      fit: BoxFit.contain,
-                      height: 40,
-                      width: 40,
+                  GestureDetector(
+                    onTap: () async {
+                      await FirebaseServices().signInWithGoogle();
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const HomeScreen(),
+                          ));
+                    },
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.06,
+                      width: MediaQuery.of(context).size.width * 0.12,
+                      decoration: BoxDecoration(
+                        color: whiteColor,
+                        borderRadius: BorderRadius.circular(12),
+                        image: const DecorationImage(
+                          image: AssetImage(
+                            "assets/images/google.jpg",
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                   const KHeight(size: 0.01),
@@ -112,14 +143,17 @@ class LoginOrSignup extends StatelessWidget {
               const KWidth(size: 0.08),
               Column(
                 children: [
-                  FloatingActionButton(
-                    backgroundColor: whiteColor,
-                    onPressed: () {},
-                    child: Image.asset(
-                      "assets/images/facebook logo.png",
-                      fit: BoxFit.contain,
-                      height: 62,
-                      width: 62,
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.06,
+                    width: MediaQuery.of(context).size.width * 0.12,
+                    decoration: BoxDecoration(
+                      color: whiteColor,
+                      borderRadius: BorderRadius.circular(12),
+                      image: const DecorationImage(
+                        image: AssetImage(
+                          "assets/images/facebook logo.png",
+                        ),
+                      ),
                     ),
                   ),
                   const KHeight(size: 0.01),

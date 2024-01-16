@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "836402525268",
+    "project_id": "fm-9-265c9",
+    "storage_bucket": "fm-9-265c9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836402525268:android:e1dca19af17b65314c29c1",
+        "android_client_info": {
+          "package_name": "com.example.fmnine"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "836402525268-cptkthq20eopeqo9kodtjfpf7taafc2r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fmnine",
+            "certificate_hash": "5f01a878da42f9047bb46b28d859294d2a81d009"
+          }
+        },
+        {
+          "client_id": "836402525268-4g5ceqtm4qedsdu3c35n19ev90rjlrpq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBE99CArQR0LRYWi6Wg99hKNAYtU9Hwl4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "836402525268-4g5ceqtm4qedsdu3c35n19ev90rjlrpq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

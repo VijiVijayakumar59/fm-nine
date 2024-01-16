@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 249, 195, 195),
+          backgroundColor: const Color.fromARGB(255, 249, 195, 195),
           title: SizedBox(
             height: MediaQuery.of(context).size.height * 0.078,
             child: Image.asset(
@@ -104,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
           type: BottomNavigationBarType.fixed,
-          backgroundColor: Color.fromARGB(255, 233, 19, 4),
+          backgroundColor: const Color.fromARGB(255, 233, 19, 4),
           currentIndex: selectedIndex,
           selectedItemColor: Colors.white,
           unselectedItemColor: blackColor,
@@ -117,7 +117,6 @@ class _HomeScreenState extends State<HomeScreen> {
           selectedFontSize: 16,
           unselectedFontSize: 13,
         ),
-      
       ),
     );
   }

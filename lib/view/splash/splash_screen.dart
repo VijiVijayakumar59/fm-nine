@@ -1,6 +1,8 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fmnine/view/home/screens/home_screen.dart';
 import 'package:fmnine/view/onboarding/screens/onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -32,12 +34,22 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> goOnboard() async {
+    User? user = FirebaseAuth.instance.currentUser;
     await Future.delayed(const Duration(seconds: 5));
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const OnboardScreen(),
-      ),
-    );
+    if (user != null) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const HomeScreen(),
+        ),
+      );
+    } else {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const OnboardScreen(),
+        ),
+      );
+    }
   }
 }

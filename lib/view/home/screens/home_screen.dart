@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fmnine/core/colors/colors.dart';
+import 'package:fmnine/models/services/auth_services/google_sign_in.dart';
+import 'package:fmnine/view/authentication/login/screens/login_screen.dart';
 import 'package:fmnine/view/home/screens/radio.dart';
 import 'package:fmnine/view/home/widgets/drawer_elevated_button.dart';
 import 'package:fmnine/view/news/screens/news_screen.dart';
@@ -40,8 +43,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         drawer: Drawer(
           child: ListView(
-            children: const [
-              DrawerHeader(
+            children: [
+              const DrawerHeader(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
@@ -79,8 +82,74 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              DrawerElevatedButton(
+              const DrawerElevatedButton(
                 text: "Settings",
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 80,
+                  right: 80,
+                  bottom: 20,
+                  top: 480,
+                ),
+                child: ElevatedButton(
+                  style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(
+                      Colors.red,
+                    ),
+                  ),
+                  onPressed: () {
+                    showDialog(
+                      context:
+                          context, // Make sure you have access to the context
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          // backgroundColor: blackColor,
+                          title: const Text(
+                            'Log Out',
+                          ),
+                          content: const Text(
+                            'Are you sure you want to log out?',
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop(); // Close the dialog
+                              },
+                              child: const Text('CANCEL'),
+                            ),
+                            TextButton(
+                              onPressed: () async {
+                                await FirebaseServices().signOutFromGoogle();
+
+                                FirebaseAuth.instance.signOut().then(
+                                  (value) {
+                                    print("Signed Out");
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) => const LoginScreen(),
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                              child: const Text(
+                                'Log Out',
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  child: const Text(
+                    "Log out",
+                    style: TextStyle(
+                      color: whiteColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
               ),
             ],
           ),

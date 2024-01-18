@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:fmnine/core/constants/constants.dart';
-import 'package:fmnine/view/authentication/sign_up/widgets/elevated_button.dart';
-import 'package:fmnine/view/authentication/sign_up/widgets/textform_widget.dart';
+import 'package:fmnine/view/authentication/login/widgets/elevated_button.dart';
+import 'package:fmnine/view/authentication/login/widgets/textform_widget.dart';
 
 class ResetPassword extends StatelessWidget {
   ResetPassword({super.key});

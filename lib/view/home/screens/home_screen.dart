@@ -1,8 +1,10 @@
+// ignore_for_file: avoid_print
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fmnine/core/colors/colors.dart';
 import 'package:fmnine/models/services/auth_services/google_sign_in.dart';
-import 'package:fmnine/view/authentication/login/screens/login_screen.dart';
+import 'package:fmnine/view/authentication/login_with.dart';
 import 'package:fmnine/view/home/screens/radio.dart';
 import 'package:fmnine/view/home/widgets/drawer_elevated_button.dart';
 import 'package:fmnine/view/news/screens/news_screen.dart';
@@ -127,7 +129,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     print("Signed Out");
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
-                                        builder: (context) => const LoginScreen(),
+                                        builder: (context) =>
+                                            const LoginScreen(),
                                       ),
                                     );
                                   },

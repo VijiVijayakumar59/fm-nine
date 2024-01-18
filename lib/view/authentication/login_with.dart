@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:fmnine/core/colors/colors.dart';
 import 'package:fmnine/core/constants/constants.dart';
 import 'package:fmnine/models/services/auth_services/google_sign_in.dart';
-import 'package:fmnine/view/authentication/sign_up/email/sign_up_screen.dart';
-import 'package:fmnine/view/authentication/sign_up/phone/phone.dart';
+import 'package:fmnine/view/authentication/login/email/email_screen.dart';
+import 'package:fmnine/view/authentication/login/phone/phone.dart';
 import 'package:fmnine/view/home/screens/home_screen.dart';
 
-class LoginOrSignup extends StatelessWidget {
-  const LoginOrSignup({super.key});
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class LoginOrSignup extends StatelessWidget {
             ),
           ),
           const Text(
-            "Login / Sign up using",
+            "Login using",
             style: TextStyle(
               color: whiteColor,
               fontSize: 16,
@@ -80,7 +80,7 @@ class LoginOrSignup extends StatelessWidget {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => SignUpEmail(),
+                          builder: (context) => EmailAuthScreen(),
                         ),
                       );
                     },
@@ -140,31 +140,31 @@ class LoginOrSignup extends StatelessWidget {
                   ),
                 ],
               ),
-              const KWidth(size: 0.08),
-              Column(
-                children: [
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.06,
-                    width: MediaQuery.of(context).size.width * 0.12,
-                    decoration: BoxDecoration(
-                      color: whiteColor,
-                      borderRadius: BorderRadius.circular(12),
-                      image: const DecorationImage(
-                        image: AssetImage(
-                          "assets/images/facebook logo.png",
-                        ),
-                      ),
-                    ),
-                  ),
-                  const KHeight(size: 0.01),
-                  const Text(
-                    "Facebook",
-                    style: TextStyle(
-                      color: whiteColor,
-                    ),
-                  ),
-                ],
-              ),
+              // const KWidth(size: 0.08),
+              // Column(
+              //   children: [
+              //     Container(
+              //       height: MediaQuery.of(context).size.height * 0.06,
+              //       width: MediaQuery.of(context).size.width * 0.12,
+              //       decoration: BoxDecoration(
+              //         color: whiteColor,
+              //         borderRadius: BorderRadius.circular(12),
+              //         image: const DecorationImage(
+              //           image: AssetImage(
+              //             "assets/images/facebook logo.png",
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //     const KHeight(size: 0.01),
+              //     const Text(
+              //       "Facebook",
+              //       style: TextStyle(
+              //         color: whiteColor,
+              //       ),
+              //     ),
+              //   ],
+              // ),
             ],
           ),
         ],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fmnine/core/colors/colors.dart';
 import 'package:fmnine/core/constants/constants.dart';
-import 'package:fmnine/view/authentication/sign_up/phone/password_screen.dart';
+import 'package:fmnine/view/home/screens/home_screen.dart';
 import 'package:pinput/pinput.dart';
 
 class OtpVerification extends StatelessWidget {
@@ -126,7 +126,7 @@ class OtpVerification extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => PasswordSetup(),
+                        builder: (context) => const HomeScreen(),
                       ),
                     );
                   },

@@ -1,15 +1,14 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, unnecessary_null_comparison
 
 import 'package:flutter/material.dart';
-import 'package:fmnine/core/colors/colors.dart';
 import 'package:fmnine/core/constants/constants.dart';
-import 'package:fmnine/view/authentication/login/screens/login_screen.dart';
-import 'package:fmnine/view/authentication/sign_up/widgets/elevated_button.dart';
-import 'package:fmnine/view/authentication/sign_up/widgets/textform_widget.dart';
+import 'package:fmnine/view/authentication/login_with.dart';
+import 'package:fmnine/view/authentication/login/widgets/elevated_button.dart';
+import 'package:fmnine/view/authentication/login/widgets/textform_widget.dart';
 import 'package:fmnine/view/home/screens/home_screen.dart';
 
-class SignUpEmail extends StatelessWidget {
-  SignUpEmail({super.key});
+class SignUpScreen extends StatelessWidget {
+  SignUpScreen({super.key});
 
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -37,7 +36,7 @@ class SignUpEmail extends StatelessWidget {
               children: [
                 Center(
                   child: SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.25,
+                    height: MediaQuery.of(context).size.height * 0.23,
                     width: MediaQuery.of(context).size.height * 0.3,
                     child: Image.asset(
                       "assets/images/FM 9  Logo.png",
@@ -53,6 +52,16 @@ class SignUpEmail extends StatelessWidget {
                   size: 0.02,
                 ),
                 TextFormWidget(
+                  validator: (value) {
+                    if (!RegExp(r'^[a-zA-Z0-9_]+$').hasMatch(value!) ||
+                        value == null ||
+                        value.isEmpty ||
+                        value.length < 4) {
+                      return 'Username can only contain letters, numbers, and underscores';
+                    } else {
+                      return null;
+                    }
+                  },
                   textController: nameController,
                   hintText: "Username",
                   prefixIcon: Icons.person_2_outlined,
@@ -61,6 +70,16 @@ class SignUpEmail extends StatelessWidget {
                   size: 0.02,
                 ),
                 TextFormWidget(
+                  validator: (value) {
+                    
+                    if (value!.isEmpty ||
+                        !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                            .hasMatch(value)) {
+                      return "Enter Valid Email";
+                    } else {
+                      return null;
+                    }
+                  },
                   textController: emailController,
                   hintText: "Enter your email",
                   prefixIcon: Icons.email_outlined,
@@ -69,6 +88,21 @@ class SignUpEmail extends StatelessWidget {
                   size: 0.02,
                 ),
                 TextFormWidget(
+                  textController: emailController,
+                  hintText: "Enter your Phone",
+                  prefixIcon: Icons.phone_outlined,
+                ),
+                const KHeight(
+                  size: 0.02,
+                ),
+                TextFormWidget(
+                  validator: (value) {
+                    if (value!.length < 6) {
+                      return "Password is Incorrect";
+                    } else {
+                      return null;
+                    }
+                  },
                   textController: passwordController,
                   hintText: "Enter Password",
                   prefixIcon: Icons.lock_outline,
@@ -78,6 +112,13 @@ class SignUpEmail extends StatelessWidget {
                   size: 0.02,
                 ),
                 TextFormWidget(
+                  validator: (value) {
+                    if (value != passwordController.text) {
+                      return "Password is Incorrect";
+                    } else {
+                      return null;
+                    }
+                  },
                   textController: confirmpasswordController,
                   hintText: "Confirm Password",
                   prefixIcon: Icons.lock_outline,
@@ -87,7 +128,7 @@ class SignUpEmail extends StatelessWidget {
                   size: 0.02,
                 ),
                 ElevatedButtonWidget(
-                  text: "Sign Up",
+                  text: "Register",
                   bgColor: const Color.fromARGB(255, 255, 26, 10),
                   onPress: () {
                     Navigator.of(context).push(
@@ -100,38 +141,38 @@ class SignUpEmail extends StatelessWidget {
                 const KHeight(
                   size: 0.01,
                 ),
-                const Text(
-                  "or sign in with",
-                  style: TextStyle(
-                      // color: twhitecolor,
-                      ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    FloatingActionButton(
-                      backgroundColor: whiteColor,
-                      onPressed: () {},
-                      child: Image.asset(
-                        "assets/images/google.jpg",
-                        fit: BoxFit.contain,
-                        height: 40,
-                        width: 40,
-                      ),
-                    ),
-                    const KWidth(size: 0.04),
-                    FloatingActionButton(
-                      backgroundColor: whiteColor,
-                      onPressed: () {},
-                      child: Image.asset(
-                        "assets/images/facebook logo.png",
-                        fit: BoxFit.contain,
-                        height: 62,
-                        width: 62,
-                      ),
-                    ),
-                  ],
-                ),
+                // const Text(
+                //   "or sign in with",
+                //   style: TextStyle(
+                //       // color: twhitecolor,
+                //       ),
+                // ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     FloatingActionButton(
+                //       backgroundColor: whiteColor,
+                //       onPressed: () {},
+                //       child: Image.asset(
+                //         "assets/images/google.jpg",
+                //         fit: BoxFit.contain,
+                //         height: 40,
+                //         width: 40,
+                //       ),
+                //     ),
+                //     const KWidth(size: 0.04),
+                //     FloatingActionButton(
+                //       backgroundColor: whiteColor,
+                //       onPressed: () {},
+                //       child: Image.asset(
+                //         "assets/images/facebook logo.png",
+                //         fit: BoxFit.contain,
+                //         height: 62,
+                //         width: 62,
+                //       ),
+                //     ),
+                //   ],
+                // ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

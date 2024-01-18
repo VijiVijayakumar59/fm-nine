@@ -73,7 +73,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const LoginOrSignup(),
+                                  builder: (context) => const LoginScreen(),
                                 ));
                           },
                           child: Text('Skip',
@@ -93,7 +93,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                           ? Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const LoginOrSignup(),
+                                builder: (context) => const LoginScreen(),
                               ))
                           : _pageController.nextPage(
                               duration: const Duration(milliseconds: 300),

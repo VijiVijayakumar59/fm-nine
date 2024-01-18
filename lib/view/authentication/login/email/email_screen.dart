@@ -1,15 +1,14 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:fmnine/core/colors/colors.dart';
 import 'package:fmnine/core/constants/constants.dart';
-import 'package:fmnine/view/authentication/login/screens/login_screen.dart';
-import 'package:fmnine/view/authentication/sign_up/phone/otp_screen.dart';
-import 'package:fmnine/view/authentication/sign_up/widgets/elevated_button.dart';
-import 'package:fmnine/view/authentication/sign_up/widgets/textform_widget.dart';
+import 'package:fmnine/view/authentication/register/register_screen.dart';
+import 'package:fmnine/view/authentication/login/widgets/elevated_button.dart';
+import 'package:fmnine/view/authentication/login/widgets/textform_widget.dart';
+import 'package:fmnine/view/home/screens/home_screen.dart';
 
-class PhoneAuthScreen extends StatelessWidget {
-  PhoneAuthScreen({super.key});
+class EmailAuthScreen extends StatelessWidget {
+  EmailAuthScreen({super.key});
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
 
@@ -32,6 +31,7 @@ class PhoneAuthScreen extends StatelessWidget {
               const EdgeInsets.only(top: 2, left: 20, right: 20, bottom: 8),
           child: SingleChildScrollView(
             child: Column(
+              // mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Center(
                   child: SizedBox(
@@ -44,41 +44,47 @@ class PhoneAuthScreen extends StatelessWidget {
                   ),
                 ),
                 const Text(
-                  "Enter the details",
+                  "Login",
                   style: TextStyle(
                     fontSize: 26,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
+                // const KHeight(
+                //   size: 0.02,
+                // ),
+                // TextFormWidget(
+                //   textController: nameController,
+                //   hintText: "Username",
+                //   prefixIcon: Icons.person_2_outlined,
+                // ),
                 const KHeight(
                   size: 0.02,
                 ),
                 TextFormWidget(
-                  textController: nameController,
-                  hintText: "Username",
-                  prefixIcon: Icons.person_2_outlined,
-                ),
-                const KHeight(
-                  size: 0.02,
-                ),
-                TextFormWidget(
-                  hintText: "Phone number",
+                  hintText: "Email",
                   textController: phoneController,
-                  prefixIcon: Icons.phone,
+                  prefixIcon: Icons.email_outlined,
                 ),
                 const KHeight(
                   size: 0.02,
                 ),
-                const KHeight(
-                  size: 0.02,
+                TextFormWidget(
+                  hintText: "Enter your password",
+                  textController: phoneController,
+                  prefixIcon: Icons.lock_outline_rounded,
                 ),
+                const KHeight(
+                  size: 0.04,
+                ),
+
                 ElevatedButtonWidget(
-                  text: "Send OTP",
+                  text: "Login",
                   bgColor: const Color.fromARGB(255, 255, 26, 10),
                   onPress: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => OtpVerification(),
+                        builder: (context) => const HomeScreen(),
                       ),
                     );
                   },
@@ -86,54 +92,54 @@ class PhoneAuthScreen extends StatelessWidget {
                 const KHeight(
                   size: 0.02,
                 ),
-                const Text(
-                  "or sign in with",
-                  style: TextStyle(
-                      // color: twhitecolor,
-                      ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    FloatingActionButton(
-                      backgroundColor: whiteColor,
-                      onPressed: () {},
-                      child: Image.asset(
-                        "assets/images/google.jpg",
-                        fit: BoxFit.contain,
-                        height: 40,
-                        width: 40,
-                      ),
-                    ),
-                    const KWidth(size: 0.04),
-                    FloatingActionButton(
-                      backgroundColor: whiteColor,
-                      onPressed: () {},
-                      child: Image.asset(
-                        "assets/images/facebook logo.png",
-                        fit: BoxFit.contain,
-                        height: 62,
-                        width: 62,
-                      ),
-                    ),
-                  ],
-                ),
+                // const Text(
+                //   "or sign in with",
+                //   style: TextStyle(
+                //       // color: twhitecolor,
+                //       ),
+                // ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     FloatingActionButton(
+                //       backgroundColor: whiteColor,
+                //       onPressed: () {},
+                //       child: Image.asset(
+                //         "assets/images/google.jpg",
+                //         fit: BoxFit.contain,
+                //         height: 40,
+                //         width: 40,
+                //       ),
+                //     ),
+                //     const KWidth(size: 0.04),
+                //     FloatingActionButton(
+                //       backgroundColor: whiteColor,
+                //       onPressed: () {},
+                //       child: Image.asset(
+                //         "assets/images/facebook logo.png",
+                //         fit: BoxFit.contain,
+                //         height: 62,
+                //         width: 62,
+                //       ),
+                //     ),
+                //   ],
+                // ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      "Already an user?",
+                      "New user?",
                     ),
                     TextButton(
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => const LoginScreen(),
+                            builder: (context) => SignUpScreen(),
                           ),
                         );
                       },
                       child: const Text(
-                        "Login",
+                        "Register",
                         style: TextStyle(
                           fontSize: 16,
                         ),

@@ -6,12 +6,15 @@ class TextFormWidget extends StatelessWidget {
   final IconData? prefixIcon;
   final IconData? suffixIcon;
   final TextEditingController textController;
+  final String? Function(String?)? validator;
+
   const TextFormWidget({
     super.key,
     required this.hintText,
     this.prefixIcon,
     this.suffixIcon,
     required this.textController,
+    this.validator,
   });
 
   @override
@@ -22,6 +25,7 @@ class TextFormWidget extends StatelessWidget {
         right: 10,
       ),
       child: TextFormField(
+        validator: validator,
         controller: textController,
         decoration: InputDecoration(
           fillColor: whiteColor,

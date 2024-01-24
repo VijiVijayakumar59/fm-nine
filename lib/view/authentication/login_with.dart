@@ -5,6 +5,7 @@ import 'package:fmnine/core/colors/colors.dart';
 import 'package:fmnine/core/constants/constants.dart';
 import 'package:fmnine/models/services/auth_services/google_sign_in.dart';
 import 'package:fmnine/view/authentication/login/email/email_screen.dart';
+import 'package:fmnine/view/authentication/login/phone/phone.dart';
 import 'package:fmnine/view/home/screens/home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -45,11 +46,11 @@ class LoginScreen extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      // Navigator.of(context).push(
-                      //   MaterialPageRoute(
-                      //     builder: (context) => PhoneAuthScreen(),
-                      //   ),
-                      // );
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => PhoneAuthScreen(),
+                        ),
+                      );
                     },
                     child: Container(
                       height: MediaQuery.of(context).size.height * 0.06,

@@ -5,7 +5,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:fmnine/core/constants/constants.dart';
 import 'package:fmnine/models/services/auth_services/authentication.dart';
-import 'package:fmnine/view/authentication/login/phone/otp_screen.dart';
+import 'package:fmnine/view/authentication/login/email/otp_screen.dart';
 import 'package:fmnine/view/authentication/login_with.dart';
 import 'package:fmnine/view/authentication/login/widgets/elevated_button.dart';
 import 'package:fmnine/view/authentication/login/widgets/textform_widget.dart';

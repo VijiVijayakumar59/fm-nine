@@ -9,16 +9,16 @@ import 'package:fmnine/view/authentication/login/email/email_screen.dart';
 import 'package:pinput/pinput.dart';
 
 class OtpVerification extends StatelessWidget {
-  final String userName;
-  final String email;
-  final String phoneNumber;
-  final String password;
+  final String? userName;
+  final String? email;
+  final String? phoneNumber;
+  final String? password;
   OtpVerification({
     super.key,
-    required this.userName,
-    required this.email,
-    required this.phoneNumber,
-    required this.password,
+    this.userName,
+    this.email,
+    this.phoneNumber,
+    this.password,
   });
 
   final pinPutController = TextEditingController();
@@ -150,10 +150,10 @@ class OtpVerification extends StatelessWidget {
 
                         Map<String, dynamic> otpValidationResult =
                             await authService.verifyOTP(
-                          userName,
-                          email,
-                          phoneNumber,
-                          password,
+                          userName!,
+                          email!,
+                          phoneNumber!,
+                          password!,
                           pinPutController.text,
                         );
 

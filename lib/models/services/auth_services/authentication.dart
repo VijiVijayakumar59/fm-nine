@@ -44,7 +44,7 @@ class AuthService {
     }
   }
 
-//====================verify otp=====================//
+//====================verify email otp =====================//
 
   Future<Map<String, dynamic>> verifyOTP(
     String userName,
@@ -120,6 +120,105 @@ class AuthService {
       }
     } catch (error) {
       return {'success': false, 'error': 'Error during login: $error'};
+    }
+  }
+
+  //======================phone number login======================//
+Future<Map<String, dynamic>> loginWithPhoneNumber(String phoneNumber) async {
+  final String loginUrl = '$baseUrl/phonenumber-login';
+
+  final Map<String, dynamic> requestBody = {
+    'phoneNumber': phoneNumber,
+  };
+
+  try {
+    final response = await http.post(
+      Uri.parse(loginUrl),
+      body: json.encode(requestBody),
+      headers: {'Content-Type': 'application/json'},
+    );
+
+    log('Response from server: ${response.statusCode} - ${response.body}');
+
+    if (response.statusCode == 200) {
+      // Successful login
+      return {'success': true, 'message': 'Login successful'};
+    } else {
+      // Check for non-JSON response
+      if (response.headers['content-type']?.contains('application/json') !=
+          true) {
+        return {'success': false, 'error': 'Unexpected response format'};
+      }
+
+      // Try to decode JSON response
+      try {
+        final Map<String, dynamic> errorResponse = json.decode(response.body);
+        return {'success': false, 'error': errorResponse['message']};
+      } catch (e) {
+        return {
+          'success': false,
+          'error': 'Failed to decode server response'
+        };
+      }
+    }
+  } catch (error) {
+    // Handle network or other errors
+    return {
+      'success': false,
+      'error': 'Error during phone number login: $error',
+    };
+  }
+}
+
+//==================phone otp verify================//
+
+  Future<Map<String, dynamic>> phoneOtp(
+    String phoneNumber,
+    String otp,
+  ) async {
+    final String verifyOtpUrl = '$baseUrl/verify-otp';
+
+    final Map<String, dynamic> requestBody = {
+      'phoneNumber': phoneNumber,
+      'otp': otp,
+    };
+
+    try {
+      final response = await http.post(
+        Uri.parse(verifyOtpUrl),
+        body: json.encode(requestBody),
+        headers: {'Content-Type': 'application/json'},
+      );
+
+      log('Response from server: ${response.statusCode} - ${response.body}');
+
+      if (response.statusCode == 200) {
+        // Successful OTP verification
+        return {'success': true, 'message': 'OTP verification successful'};
+      } else {
+        // Check for non-JSON response
+        if (response.headers['content-type']?.contains('application/json') !=
+            true) {
+          return {'success': false, 'error': 'Unexpected response format'};
+        }
+
+        // Try to decode JSON response
+        try {
+          final Map<String, dynamic> errorResponse = json.decode(response.body);
+          return {'success': false, 'error': errorResponse['message']};
+        } catch (e) {
+          return {
+            'success': false,
+            'error': 'Failed to decode server response'
+          };
+        }
+      }
+    } catch (error) {
+      // Handle network or other errors
+      return {
+        'success': false,
+        'error': 'Error during OTP verification: $error',
+      };
     }
   }
 }

@@ -31,6 +31,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+      // darkTheme: darkMode,
+      // themeMode: ThemeMode.system,
       theme: ThemeData(
         fontFamily: "Lora",
         colorScheme: ColorScheme.fromSeed(

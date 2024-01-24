@@ -1,5 +1,4 @@
 // ignore_for_file: avoid_print
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fmnine/core/colors/colors.dart';
@@ -87,12 +86,33 @@ class _HomeScreenState extends State<HomeScreen> {
               const DrawerElevatedButton(
                 text: "Settings",
               ),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    "Dark Theme",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                  // Switch(
+                  //   onChanged: toggleSwitch,
+                  //   value: isSwitched,
+                  //   activeColor: Colors.red,
+                  //   activeTrackColor: whiteColor,
+                  //   inactiveThumbColor: Colors.red,
+                  //   inactiveTrackColor: whiteColor,
+                  // ),
+                ],
+              ),
               Padding(
                 padding: const EdgeInsets.only(
                   left: 80,
                   right: 80,
                   bottom: 20,
-                  top: 480,
+                  top: 400,
                 ),
                 child: ElevatedButton(
                   style: const ButtonStyle(
@@ -102,8 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   onPressed: () {
                     showDialog(
-                      context:
-                          context, // Make sure you have access to the context
+                      context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
                           // backgroundColor: blackColor,
@@ -116,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           actions: [
                             TextButton(
                               onPressed: () {
-                                Navigator.of(context).pop(); // Close the dialog
+                                Navigator.of(context).pop();
                               },
                               child: const Text('CANCEL'),
                             ),

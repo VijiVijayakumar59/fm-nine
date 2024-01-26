@@ -4,12 +4,16 @@ import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:fmnine/view/splash/splash_screen.dart';
+import 'package:fmnine/view/authentication/login_with.dart';
+import 'package:fmnine/view/home/screens/home_screen.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   GoogleSignIn googleSignIn = GoogleSignIn();
   WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
   Platform.isAndroid
       ? await Firebase.initializeApp(
           options: const FirebaseOptions(
@@ -20,11 +24,14 @@ void main() async {
           ),
         )
       : await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(MyApp(
+    isLoggedIn: isLoggedIn,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool? isLoggedIn;
+  const MyApp({super.key, this.isLoggedIn});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +46,7 @@ class MyApp extends StatelessWidget {
             seedColor: const Color.fromARGB(255, 235, 117, 109)),
         useMaterial3: true,
       ),
-      home: const SplashScreen(),
+      home: isLoggedIn! ? const HomeScreen() : const LoginScreen(),
     );
   }
 }

@@ -57,14 +57,6 @@ class EmailAuthScreen extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  // const KHeight(
-                  //   size: 0.02,
-                  // ),
-                  // TextFormWidget(
-                  //   textController: nameController,
-                  //   hintText: "Username",
-                  //   prefixIcon: Icons.person_2_outlined,
-                  // ),
                   const KHeight(
                     size: 0.02,
                   ),
@@ -84,7 +76,6 @@ class EmailAuthScreen extends StatelessWidget {
                   const KHeight(
                     size: 0.04,
                   ),
-
                   ElevatedButtonWidget(
                     text: "Login",
                     bgColor: const Color.fromARGB(255, 255, 26, 10),
@@ -124,38 +115,6 @@ class EmailAuthScreen extends StatelessWidget {
                   const KHeight(
                     size: 0.02,
                   ),
-                  // const Text(
-                  //   "or sign in with",
-                  //   style: TextStyle(
-                  //       // color: twhitecolor,
-                  //       ),
-                  // ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.center,
-                  //   children: [
-                  //     FloatingActionButton(
-                  //       backgroundColor: whiteColor,
-                  //       onPressed: () {},
-                  //       child: Image.asset(
-                  //         "assets/images/google.jpg",
-                  //         fit: BoxFit.contain,
-                  //         height: 40,
-                  //         width: 40,
-                  //       ),
-                  //     ),
-                  //     const KWidth(size: 0.04),
-                  //     FloatingActionButton(
-                  //       backgroundColor: whiteColor,
-                  //       onPressed: () {},
-                  //       child: Image.asset(
-                  //         "assets/images/facebook logo.png",
-                  //         fit: BoxFit.contain,
-                  //         height: 62,
-                  //         width: 62,
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

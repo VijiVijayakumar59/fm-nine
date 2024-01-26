@@ -153,17 +153,17 @@ class PhoneOtpScreen extends StatelessWidget {
                             pinPutController.text,
                           );
                           log('OTP Verification Result: $otpVerificationResult');
-
                           if (otpVerificationResult.containsKey('status')) {
-                            if (otpVerificationResult['success']) {
+                            if (otpVerificationResult['status'] == 'success') {
                               // Handle successful OTP verification
                               log('OTP verification successful. Navigating to HomeScreen...');
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
-                                  builder: (context) => HomeScreen(),
+                                  builder: (context) => const HomeScreen(),
                                 ),
                               );
                             } else {
+                              // Handle failed OTP verification
                               log('OTP verification failed. Showing SnackBar...');
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
@@ -175,11 +175,12 @@ class PhoneOtpScreen extends StatelessWidget {
                               );
                             }
                           } else {
-                            log('Unexpected response from server');
+                            // Handle unexpected response from server
+                            log('Unexpected response from server during OTP verification: $otpVerificationResult');
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
-                                content:
-                                    Text('Unexpected response from server'),
+                                content: Text(
+                                    'Unexpected response from server during OTP verification'),
                                 duration: Duration(seconds: 2),
                               ),
                             );

@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, use_build_context_synchronously
 
 import 'dart:developer';
 
@@ -82,7 +82,7 @@ class PhoneAuthScreen extends StatelessWidget {
                         final Map<String, dynamic> phoneLoginResult =
                             await authService
                                 .loginWithPhoneNumber(phoneController.text);
-
+                        log(phoneLoginResult.toString());
                         if (phoneLoginResult['success']) {
                           // Phone login was successful
                           log('Phone number login successful');
@@ -126,7 +126,7 @@ class PhoneAuthScreen extends StatelessWidget {
                         onPressed: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => SignUpScreen(),
+                              builder: (context) => const SignUpScreen(),
                             ),
                           );
                         },

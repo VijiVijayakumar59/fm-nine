@@ -1,12 +1,16 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   final String baseUrl = 'https://fm9-malayalam.onrender.com/api';
-
-  Future<Map<String, dynamic>> signUp(String userName, String email,
-      String phoneNumber, String password) async {
+  Future<Map<String, dynamic>> signUp(
+    String userName,
+    String email,
+    String phoneNumber,
+    String password,
+  ) async {
     final String signUpUrl = '$baseUrl/signup';
 
     final Map<String, dynamic> requestBody = {
@@ -68,6 +72,7 @@ class AuthService {
 
       // Parse the response and return the result
       if (response.statusCode == 200) {
+        log(response.body.toString());
         return json.decode(response.body);
       } else {
         // Handle non-200 status code
@@ -85,6 +90,8 @@ class AuthService {
 //=========================Login=========================//
 
   Future<Map<String, dynamic>> login(String email, String password) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+
     try {
       final String loginUrl = '$baseUrl/login';
 
@@ -102,6 +109,8 @@ class AuthService {
       log('Response from server: ${response.statusCode} - ${response.body}');
 
       if (response.statusCode == 200) {
+        pref.setBool('isLoggedIn', true);
+
         return {'success': true, 'message': 'Login successful'};
       } else {
         if (response.headers['content-type']?.contains('application/json') !=
@@ -124,54 +133,53 @@ class AuthService {
   }
 
   //======================phone number login======================//
-Future<Map<String, dynamic>> loginWithPhoneNumber(String phoneNumber) async {
-  final String loginUrl = '$baseUrl/phonenumber-login';
+  Future<Map<String, dynamic>> loginWithPhoneNumber(String phoneNumber) async {
+    final String loginUrl = '$baseUrl/phonenumber-login';
 
-  final Map<String, dynamic> requestBody = {
-    'phoneNumber': phoneNumber,
-  };
-
-  try {
-    final response = await http.post(
-      Uri.parse(loginUrl),
-      body: json.encode(requestBody),
-      headers: {'Content-Type': 'application/json'},
-    );
-
-    log('Response from server: ${response.statusCode} - ${response.body}');
-
-    if (response.statusCode == 200) {
-      // Successful login
-      return {'success': true, 'message': 'Login successful'};
-    } else {
-      // Check for non-JSON response
-      if (response.headers['content-type']?.contains('application/json') !=
-          true) {
-        return {'success': false, 'error': 'Unexpected response format'};
-      }
-
-      // Try to decode JSON response
-      try {
-        final Map<String, dynamic> errorResponse = json.decode(response.body);
-        return {'success': false, 'error': errorResponse['message']};
-      } catch (e) {
-        return {
-          'success': false,
-          'error': 'Failed to decode server response'
-        };
-      }
-    }
-  } catch (error) {
-    // Handle network or other errors
-    return {
-      'success': false,
-      'error': 'Error during phone number login: $error',
+    final Map<String, dynamic> requestBody = {
+      'phoneNumber': phoneNumber,
     };
+
+    try {
+      final response = await http.post(
+        Uri.parse(loginUrl),
+        body: json.encode(requestBody),
+        headers: {'Content-Type': 'application/json'},
+      );
+      log(response.body.toString());
+      log('Response from server: ${response.statusCode} - ${response.body}');
+
+      if (response.statusCode == 200) {
+        // Successful login
+        return {'success': true, 'message': 'Login successful'};
+      } else {
+        // Check for non-JSON response
+        if (response.headers['content-type']?.contains('application/json') !=
+            true) {
+          return {'success': false, 'error': 'Unexpected response format'};
+        }
+
+        // Try to decode JSON response
+        try {
+          final Map<String, dynamic> errorResponse = json.decode(response.body);
+          return {'success': false, 'error': errorResponse['message']};
+        } catch (e) {
+          return {
+            'success': false,
+            'error': 'Failed to decode server response'
+          };
+        }
+      }
+    } catch (error) {
+      // Handle network or other errors
+      return {
+        'success': false,
+        'error': 'Error during phone number login: $error',
+      };
+    }
   }
-}
 
 //==================phone otp verify================//
-
   Future<Map<String, dynamic>> phoneOtp(
     String phoneNumber,
     String otp,
@@ -193,16 +201,13 @@ Future<Map<String, dynamic>> loginWithPhoneNumber(String phoneNumber) async {
       log('Response from server: ${response.statusCode} - ${response.body}');
 
       if (response.statusCode == 200) {
-        // Successful OTP verification
         return {'success': true, 'message': 'OTP verification successful'};
       } else {
-        // Check for non-JSON response
         if (response.headers['content-type']?.contains('application/json') !=
             true) {
           return {'success': false, 'error': 'Unexpected response format'};
         }
 
-        // Try to decode JSON response
         try {
           final Map<String, dynamic> errorResponse = json.decode(response.body);
           return {'success': false, 'error': errorResponse['message']};
@@ -214,7 +219,7 @@ Future<Map<String, dynamic>> loginWithPhoneNumber(String phoneNumber) async {
         }
       }
     } catch (error) {
-      // Handle network or other errors
+      log('Error during OTP verification: $error');
       return {
         'success': false,
         'error': 'Error during OTP verification: $error',

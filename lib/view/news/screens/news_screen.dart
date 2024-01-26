@@ -5,11 +5,16 @@ import 'package:fmnine/models/services/reel_services/reel_services.dart';
 import 'package:fmnine/view/news/widgets/video_play_widget.dart';
 
 class VideoReelPage extends StatefulWidget {
-  const VideoReelPage({Key? key, required this.reels, required this.onLoadMore})
-      : super(key: key);
+  const VideoReelPage({
+    Key? key,
+    required this.reels,
+    required this.onLoadMore,
+    this.videoId,
+  }) : super(key: key);
 
   final List<Video> reels;
   final VoidCallback onLoadMore;
+  final String? videoId;
 
   @override
   _VideoReelPageState createState() => _VideoReelPageState();
@@ -62,6 +67,7 @@ class _VideoReelPageState extends State<VideoReelPage> {
               onPageChanged: _handlePageChanged,
               itemBuilder: (context, index) {
                 return VideoPlayerWidget(
+                  videoId: widget.reels[index].videoId,
                   key: Key(widget.reels[index].videoUrl),
                   reelUrl: widget.reels[index].videoUrl,
                   newsHeadline: widget.reels[index].videoTitle,

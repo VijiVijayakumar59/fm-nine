@@ -4,16 +4,19 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:fmnine/models/services/reel_services/cache_config.dart';
 import 'package:fmnine/models/services/reel_services/reel_services.dart';
+import 'package:fmnine/viewModel/shorts/video_likes.dart';
+import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoPlayerWidget extends StatefulWidget {
   final String reelUrl;
   final String newsHeadline;
-
+  final String videoId;
   const VideoPlayerWidget({
     Key? key,
     required this.reelUrl,
     required this.newsHeadline,
+    required this.videoId,
   }) : super(key: key);
 
   @override
@@ -27,12 +30,15 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget>
   bool _isPlaying = false;
   bool _isMounted = false;
   bool isLiked = false;
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     _isMounted = true;
     initializeController();
+    isLiked = Provider.of<LikedVideosProvider>(context, listen: false)
+        .isVideoLiked(widget.reelUrl);
   }
 
   Future<void> initializeController() async {
@@ -80,7 +86,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget>
         _controller.pause();
       } else if (state == AppLifecycleState.detached) {
         // App is terminated
-        _controller.dispose();
+        _disposeController(); // Dispose of the controller
       }
     }
   }
@@ -89,11 +95,17 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget>
   void dispose() {
     log('disposing a controller');
     _isMounted = false;
-    if (_videoInitialized) {
-      _controller.dispose(); // Dispose of the controller when done
-    }
+    _disposeController(); // Dispose of the controller when done
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
+  }
+
+  // Explicitly pause and dispose of the controller
+  void _disposeController() {
+    if (_videoInitialized) {
+      _controller.pause();
+      _controller.dispose();
+    }
   }
 
   @override
@@ -159,12 +171,19 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget>
                       color: isLiked ? Colors.red : Colors.white,
                     ),
                     onPressed: () {
+                      final likedVideosProvider =
+                          Provider.of<LikedVideosProvider>(context,
+                              listen: false);
+                      likedVideosProvider.toggleLike(widget.reelUrl);
+                      setState(() {
+                        isLiked =
+                            likedVideosProvider.isVideoLiked(widget.reelUrl);
+                      });
                       if (_isMounted && _videoInitialized) {
                         ReelService reelService = ReelService(
                           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWIzNjYyNmVjMjdmZGY2NTk0NDA5NjAiLCJyb2xlIjoiVXNlciIsImlhdCI6MTcwNjI1NTk2MSwiZXhwIjoxNzA2Njg3OTYxfQ.N4w9CS7UZNtBWKAKIM2zC25-GPYp5RzWMevnHoxUGtk",
                         );
-                        const videoId = '65b2093f412e51dcf853f245';
-
+                        String videoId = widget.videoId;
                         // Call the likeVideo method and update the like status
                         reelService.likeVideo(videoId).then((_) {
                           setState(() {

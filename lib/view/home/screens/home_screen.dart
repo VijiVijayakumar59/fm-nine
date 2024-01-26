@@ -11,7 +11,8 @@ import 'package:fmnine/view/news/screens/news_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final String? userName;
+  const HomeScreen({super.key, this.userName});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -71,8 +72,8 @@ class _HomeScreenState extends State<HomeScreen> {
         drawer: Drawer(
           child: ListView(
             children: [
-              const DrawerHeader(
-                decoration: BoxDecoration(
+              DrawerHeader(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
                       Color.fromARGB(255, 252, 30, 5),
@@ -85,14 +86,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 child: Column(
                   children: [
-                    Text(
+                    const Text(
                       "FM 9",
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    CircleAvatar(
+                    const CircleAvatar(
                       backgroundColor: Colors.white,
                       radius: 28,
                       child: Icon(
@@ -102,9 +103,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     Text(
-                      "Username",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                      widget.userName.toString(),
+                      style: const TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.w600),
                     ),
                   ],
                 ),

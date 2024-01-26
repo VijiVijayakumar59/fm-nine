@@ -8,13 +8,18 @@ class Video {
   final String videoUrl;
   final String videoTitle;
 
-  Video(this.videoUrl, this.videoTitle);
+  final String videoId;
+  Video(
+    this.videoUrl,
+    this.videoTitle,
+    this.videoId,
+  );
 }
 
 class ReelService {
   final List<Video> _reels = [];
   int _currentPage = 1;
-  String _authToken; // Store the authentication token
+  String _authToken;
 
   ReelService(this._authToken);
 
@@ -41,8 +46,8 @@ class ReelService {
         final List<Video> videos = shortVideos.map((video) {
           return Video(
             video['videoUrl'].toString(),
-            video['videoTitle']
-                .toString(), // Replace with the actual key for video title
+            video['videoTitle'].toString(),
+            video['_id'].toString(),
           );
         }).toList();
         log(response.body.toString());
@@ -64,7 +69,7 @@ class ReelService {
 
   Future<void> loadNextPage() async {
     _currentPage++;
-    await getVideosFromApi(); // Make sure getVideosFromApi is awaited
+    await getVideosFromApi();
   }
 
   List<Video> getReels() {
@@ -92,9 +97,9 @@ class ReelService {
     } else {
       log('Failed to like video. Status code: ${response.statusCode}');
       log('Response body: ${response.body}');
-      // Handle the error as needed
       throw Exception(
-          'Failed to like video. Status code: ${response.statusCode}, Response body: ${response.body}');
+        'Failed to like video. Status code: ${response.statusCode}, Response body: ${response.body}',
+      );
     }
   }
 }

@@ -13,12 +13,15 @@ class OtpVerification extends StatelessWidget {
   final String? email;
   final String? phoneNumber;
   final String? password;
+  final VoidCallback onVerificationSuccess;
+
   OtpVerification({
     super.key,
     this.userName,
     this.email,
     this.phoneNumber,
     this.password,
+    required this.onVerificationSuccess,
   });
 
   final pinPutController = TextEditingController();
@@ -162,9 +165,12 @@ class OtpVerification extends StatelessWidget {
                         if (otpValidationResult.containsKey('status')) {
                           if (otpValidationResult['status'] == 'success') {
                             log('OTP validation successful');
+                            onVerificationSuccess();
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) => EmailAuthScreen(),
+                                builder: (context) => EmailAuthScreen(
+                                  userName: userName!,
+                                ),
                               ),
                             );
                           } else {

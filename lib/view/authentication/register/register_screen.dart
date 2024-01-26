@@ -5,6 +5,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:fmnine/core/constants/constants.dart';
 import 'package:fmnine/models/services/auth_services/authentication.dart';
+import 'package:fmnine/view/authentication/login/email/email_screen.dart';
 import 'package:fmnine/view/authentication/login/email/otp_screen.dart';
 import 'package:fmnine/view/authentication/login_with.dart';
 import 'package:fmnine/view/authentication/login/widgets/elevated_button.dart';
@@ -172,6 +173,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 email: emailController.text,
                                 phoneNumber: phoneController.text,
                                 password: passwordController.text,
+                                onVerificationSuccess: () {
+                                  // Navigate to home screen and pass the username
+                                  Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                      builder: (context) => EmailAuthScreen(
+                                        userName: nameController.text,
+                                      ),
+                                    ),
+                                  );
+                                },
                               ),
                             ),
                           );

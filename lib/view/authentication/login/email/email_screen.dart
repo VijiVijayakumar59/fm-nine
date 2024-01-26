@@ -11,7 +11,8 @@ import 'package:fmnine/view/authentication/login/widgets/textform_widget.dart';
 import 'package:fmnine/view/home/screens/home_screen.dart';
 
 class EmailAuthScreen extends StatelessWidget {
-  EmailAuthScreen({super.key});
+  final String? userName;
+  EmailAuthScreen({super.key, this.userName});
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> loginKey = GlobalKey<FormState>();
@@ -97,7 +98,9 @@ class EmailAuthScreen extends StatelessWidget {
 
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => const HomeScreen(),
+                              builder: (context) => HomeScreen(
+                                userName: userName.toString(),
+                              ),
                             ),
                           );
                         } else {
